@@ -46,8 +46,9 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade border p-3 show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
                                 <div class="mb-3">
-                                    <label>Select Category</label>
+                                    
                                     <select name="category_id" class="form-control">
+                                        <option value="">--Select Category--</option>
                                         @foreach($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
@@ -64,6 +65,7 @@
                                 <div class="mb-3">
                                     <label>Select Brand</label>
                                     <select name="brand" class="form-control">
+                                    <option value="">--Select Brand--</option>
                                         @foreach($brands as $brand)
                                             <option value="{{ $brand->name }}">{{ $brand->name }}</option>
                                         @endforeach

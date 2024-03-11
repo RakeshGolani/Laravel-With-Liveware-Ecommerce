@@ -8,7 +8,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-
+    
+    <meta name="description" content="@yield('meta_keyword')">
+    <meta name="keywords" content="@yield('meta_description')">
+    <meta name="author" content="Ecommerce">
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
