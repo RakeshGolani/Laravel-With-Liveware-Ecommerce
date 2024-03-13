@@ -4,9 +4,9 @@
 <div>
     <div class="row">
         <div class="col-md-12">
-                @if(session('message'))
+                <!-- @if(session('message'))
                 <div class="alert alert-success">{{ session('message') }},</div>
-                @endif
+                @endif -->
             <div class="card">
                 <div class="card-header">
                     <h3>
@@ -16,13 +16,13 @@
                 </div>
                 <div class="card-body">
 
-                    @if($errors->any())
+                    <!-- @if($errors->any())
                     <div class="alert alert-warning">
                         @foreach($errors->all() as $error)
                         <div>{{ $error }}</div>
                         @endforeach
                     </div>
-                    @endif
+                    @endif -->
                     <form action="{{ url('admin/products') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
@@ -53,14 +53,17 @@
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('category_id') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Product Name</label>
-                                    <input type="text" name="name" class="form-control"/>
+                                    <input type="text" name="name" value="{{ old('name') }}" class="form-control"/>
+                                    @error('name') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Product Slug</label>
-                                    <input type="text" name="slug" class="form-control"/>
+                                    <input type="text" name="slug" value="{{ old('slug') }}" class="form-control"/>
+                                    @error('slug') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Select Brand</label>
@@ -70,28 +73,34 @@
                                             <option value="{{ $brand->name }}">{{ $brand->name }}</option>
                                         @endforeach
                                     </select>
+                                    @error('brand') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Small Description(500 Words)</label>
-                                    <textarea name="small_description" class="form-control" rows="4"></textarea>
+                                    <textarea name="small_description" class="form-control" rows="4">{{ old('small_description') }}</textarea>
+                                    @error('small_description') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Description</label>
-                                    <textarea name="description" class="form-control" rows="4"></textarea>
+                                    <textarea name="description" class="form-control" rows="4">{{ old('description') }}</textarea>
+                                    @error('description') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
                             <div class="tab-pane fade border p-3" id="seotag-tab-pane" role="tabpanel" aria-labelledby="seotag-tab" tabindex="0">
                                 <div class="mb-3">
                                     <label>Meta Title</label>
-                                    <input type="text" name="meta_title" class="form-control"/>
+                                    <input type="text" name="meta_title" value="{{ old('meta_title') }}" class="form-control"/>
+                                    @error('meta_title') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Meta Description</label>
-                                    <textarea name="meta_description" class="form-control" rows="4"></textarea>
+                                    <textarea name="meta_description" class="form-control" rows="4">{{ old('meta_description') }}</textarea>
+                                    @error('meta_description') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="mb-3">
                                     <label>Meta Keword</label>
-                                    <textarea name="meta_keyword" class="form-control" rows="4"></textarea>
+                                    <textarea name="meta_keyword" class="form-control" rows="4">{{ old('meta_keyword') }}</textarea>
+                                    @error('meta_keyword') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
 
                             </div>
@@ -100,19 +109,22 @@
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label>Original Price</label>
-                                            <input type="text" name="original_price" class="form-control"/>
+                                            <input type="text" name="original_price" value="{{ old('original_price') }}" class="form-control"/>
+                                            @error('original_price') <small class="text-danger">{{ $message }}</small>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label>Selling Price</label>
-                                            <input type="text" name="selling_price" class="form-control"/>
+                                            <input type="text" name="selling_price" value="{{ old('selling_price') }}" class="form-control"/>
+                                            @error('selling_price') <small class="text-danger">{{ $message }}</small>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="mb-3">
                                             <label>Quantity</label>
-                                            <input type="text" name="quantity" class="form-control"/>
+                                            <input type="text" name="quantity" value="{{ old('quantity') }}" class="form-control"/>
+                                            @error('quantity') <small class="text-danger">{{ $message }}</small>@enderror
                                         </div>
                                     </div>
                                     <div class="col-md-4">
@@ -133,6 +145,7 @@
                                 <div class="mb-3">
                                     <label>Upload Product Images</label>
                                     <input type="file" name="image[]" multiple class="form-control"/>
+                                    @error('image') <small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
                             <div class="tab-pane fade border p-3" id="color-tab-pane" role="tabpanel" aria-labelledby="image-tab" tabindex="0">

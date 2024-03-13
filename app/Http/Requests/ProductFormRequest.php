@@ -35,7 +35,8 @@ class ProductFormRequest extends FormRequest
             'slug' => [
                 'required',
                 'string',
-                'max:255'
+                'max:255',
+                'unique:products,slug',
             ],
             'brand' => [
                 'required',
@@ -82,8 +83,8 @@ class ProductFormRequest extends FormRequest
                 'string',
             ],
             'image' => [
-                'nullable',
-                //'image|mimes:jpeg,png,jpg'
+                'required',
+                // 'image|mimes:jpeg,png,jpg'
             ],
         ];
     }
