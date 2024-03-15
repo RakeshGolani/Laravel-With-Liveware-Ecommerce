@@ -91,40 +91,56 @@ class View extends Component
                 {
                     if($this->prodColorSelectedQuantity != NULL)
                     {
-                        $productColor = $this->product->productColors->where('id', $this->productColorId)->first();
-                        if ($productColor->colorquantity > 0) {
-                            
-                            if ($productColor->colorquantity > $this->quantityCount) 
-                            {
-                                // Insert Product to Cart
-                                Cart::create([
-                                    'user_id' => auth()->user()->id,
-                                    'product_id' => $productId,
-                                    'product_color_id' => $this->productColorId,
-                                    'quantity' => $this->quantityCount
-                                ]);
-                                $this->dispatchBrowserEvent('message', [
-                                    'text'=> 'Product Added to Cart',
-                                    'type' => 'success',
-                                    'status' => 200
-                                ]);
+                        if (Cart::where('user_id',auth()->user()->id)
+                                ->where('product_id', $productId)
+                                ->where('product_color_id', $this->productColorId)
+                                ->exists())
+                        {
+                            $this->dispatchBrowserEvent('message', [
+                                'text'=> 'Color Product Already Added',
+                                'type' => 'warning',
+                                'status' => 200
+                            ]);
+                        }
+                        else
+                        {
+                            $productColor = $this->product->productColors->where('id', $this->productColorId)->first();
+                            if ($productColor->colorquantity > 0) {
+                                
+                                if ($productColor->colorquantity > $this->quantityCount) 
+                                {
+                                    // Insert Product to Cart
+                                    Cart::create([
+                                        'user_id' => auth()->user()->id,
+                                        'product_id' => $productId,
+                                        'product_color_id' => $this->productColorId,
+                                        'quantity' => $this->quantityCount
+                                    ]);
+
+                                    $this->emit('CartAddedUpdated');
+                                    $this->dispatchBrowserEvent('message', [
+                                        'text'=> 'Product Added to Cart',
+                                        'type' => 'success',
+                                        'status' => 200
+                                    ]);
+                                }
+                                else
+                                {
+                                    $this->dispatchBrowserEvent('message', [
+                                        'text'=> 'Only '.$productColor->colorquantity.' Color Quantity Avilable',
+                                        'type' => 'warning',
+                                        'status' => 200
+                                    ]);
+                                }
                             }
                             else
                             {
                                 $this->dispatchBrowserEvent('message', [
-                                    'text'=> 'Only '.$productColor->colorquantity.' Color Quantity Avilable',
+                                    'text'=> 'Color Out of Stock',
                                     'type' => 'warning',
-                                    'status' => 200
+                                    'status' => 404
                                 ]);
                             }
-                        }
-                        else
-                        {
-                            $this->dispatchBrowserEvent('message', [
-                                'text'=> 'Color Out of Stock',
-                                'type' => 'warning',
-                                'status' => 404
-                            ]);
                         }
                     }
                     else
@@ -138,38 +154,51 @@ class View extends Component
                 }
                 else
                 {
-                    if($this->product->quantity > 0) 
+                    if (Cart::where('user_id',auth()->user()->id)->where('product_id', $productId)->exists()) 
                     {
-                        if ($this->product->quantity > $this->quantityCount) 
+                        $this->dispatchBrowserEvent('message', [
+                            'text'=> 'Product Already Added',
+                            'type' => 'warning',
+                            'status' => 200
+                        ]);
+                    }
+                    else
+                    {
+                        if($this->product->quantity > 0) 
                         {
-                            // Insert Product to Cart
-                            Cart::create([
-                                'user_id' => auth()->user()->id,
-                                'product_id' => $productId,
-                                'quantity' => $this->quantityCount
-                            ]);
-                            $this->dispatchBrowserEvent('message', [
-                                'text'=> 'Product Added to Cart',
-                                'type' => 'success',
-                                'status' => 200
-                            ]);
+                            if ($this->product->quantity > $this->quantityCount) 
+                            {
+                                // Insert Product to Cart
+                                Cart::create([
+                                    'user_id' => auth()->user()->id,
+                                    'product_id' => $productId,
+                                    'quantity' => $this->quantityCount
+                                ]);
+
+                                $this->emit('CartAddedUpdated');
+                                $this->dispatchBrowserEvent('message', [
+                                    'text'=> 'Product Added to Cart',
+                                    'type' => 'success',
+                                    'status' => 200
+                                ]);
+                            }
+                            else
+                            {
+                                $this->dispatchBrowserEvent('message', [
+                                    'text'=> 'Only '.$this->product->quantity.' Quantity Avilable',
+                                    'type' => 'success',
+                                    'status' => 200
+                                ]);
+                            }
                         }
                         else
                         {
                             $this->dispatchBrowserEvent('message', [
-                                'text'=> 'Only '.$this->product->quantity.' Quantity Avilable',
-                                'type' => 'success',
-                                'status' => 200
+                                'text'=> 'Out of Stock',
+                                'type' => 'warning',
+                                'status' => 404
                             ]);
                         }
-                    }
-                    else
-                    {
-                        $this->dispatchBrowserEvent('message', [
-                            'text'=> 'Out of Stock',
-                            'type' => 'warning',
-                            'status' => 404
-                        ]);
                     }
                 }
         
