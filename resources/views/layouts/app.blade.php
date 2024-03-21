@@ -45,6 +45,8 @@
         <main class="">
             @yield('content')
         </main>
+
+        @include('layouts.frontend.footer')
     </div>
 
     <!-- Scripts -->
