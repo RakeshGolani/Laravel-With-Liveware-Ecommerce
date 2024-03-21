@@ -36,7 +36,7 @@ class ProductFormRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                'unique:products,slug',
+                //'unique:products,slug',
             ],
             'brand' => [
                 'required',

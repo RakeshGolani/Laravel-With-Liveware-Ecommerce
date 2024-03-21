@@ -1,15 +1,31 @@
 <div>
     <div class="py-3 py-md-5">
         <div class="container">
-            @if (session()->has('message'))
+            <!-- @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
-            @endif
+            @endif -->
             <div class="row">
                 <div class="col-md-5 mt-3">
-                    <div class="bg-white border">
-                        <img src="{{ asset($product->productImages[0]->image) }}" class="w-100" alt="Img">
+                    <div class="bg-white border" wire:ignore>
+                        <!-- <img src="{{ asset($product->productImages[0]->image) }}" class="w-100" alt="Img"> -->
+                        <div class="exzoom" id="exzoom">
+                            <!-- Images -->
+                            <div class="exzoom_img_box">
+                                <ul class='exzoom_img_ul'>
+                                @foreach($product->productImages as $itemImage)
+                                <li><img src="{{ asset($itemImage->image) }}"/></li>
+                                @endforeach
+                                </ul>
+                            </div>
+                            <div class="exzoom_nav"></div>
+                            <!-- Nav Buttons -->
+                            <p class="exzoom_btn">
+                                <a href="javascript:void(0);" class="exzoom_prev_btn"> < </a>
+                                <a href="javascript:void(0);" class="exzoom_next_btn"> > </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-7 mt-3">
@@ -97,3 +113,23 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+
+    <script>
+        $(function(){
+
+            $("#exzoom").exzoom({
+                "navWidth": 60,
+                "navHeight": 60,
+                "navItemNum": 5,
+                "navItemMargin": 7,
+                "navBorder": 1,
+                "autoPlay": false,
+                "autoPlayTimeout": 2000
+            });
+
+        });
+    </script>
+
+@endpush
