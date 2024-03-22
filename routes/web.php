@@ -51,6 +51,10 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
 
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
+    Route::get('settings', [App\Http\Controllers\Admin\SettingController::class,'index'])->name('admin.setting');
+
+    Route::post('settings', [App\Http\Controllers\Admin\SettingController::class,'store'])->name('admin.settings');
+
     // Sliders Routes
     Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function () {
         Route::get('/sliders', 'index');
@@ -104,6 +108,18 @@ Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function () {
         Route::put('/orders/{orderId}', 'updateOrderStatus');
         Route::get('invoice/{orderId}', 'viewInvoice');
         Route::get('invoice/{orderId}/generate', 'generateInvoice');
+    });
+
+
+    Route::controller(App\Http\Controllers\Admin\UserController::class)->group(function () {
+        Route::get('/users', 'index')->name('view.users');
+        Route::get('/users/create', 'create')->name('create.user');
+        Route::post('/users/create', 'store')->name('store.user');
+        Route::get('/users/{user_id}/edit', 'edit')->name('edit.user');
+        Route::put('users/{user_id}/update', 'update')->name('update.user');
+
+        Route::get('/users/{user_id}/delete', 'destroy')->name('delete.user');
+
     });
 
 });

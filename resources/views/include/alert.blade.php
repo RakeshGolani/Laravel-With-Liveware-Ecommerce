@@ -1,5 +1,5 @@
 @if(session('message'))
-    <div class="alert alert-success mb-2" id="autoCloseAlert">{{ session('message') }},</div>
+    <div class="alert alert-success mb-2" id="autoCloseAlert">{{ session('message') }}</div>
 @endif
 
 @if(session('error'))

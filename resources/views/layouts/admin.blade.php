@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- plugins:css -->
     <link rel="stylesheet" href="{{ asset('admin/vendors/mdi/css/materialdesignicons.min.css') }}">
@@ -32,7 +32,7 @@
         <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
           <a class="navbar-brand brand-logo" href="index.html">
             <!-- <img src="images/logo.svg" alt="logo"/> -->
-            Ecommerce
+            Riyaan Ecom
           </a>
           <a class="navbar-brand brand-logo-mini" href="index.html">
             <!-- <img src="images/logo-mini.svg" alt="logo"/> -->
@@ -222,7 +222,7 @@
             <div class="collapse" id="product">
               <ul class="nav flex-column sub-menu list-unstyled">
                 <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products/create') }}">Add Product</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">Viw Products</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ url('admin/products') }}">View Products</a></li>
               </ul>
             </div>
           </li>
@@ -239,12 +239,31 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="ui-basic">
+              <i class="mdi mdi-plus-circle menu-icon"></i>
+              <span class="menu-title">Users</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="users">
+              <ul class="nav flex-column sub-menu list-unstyled">
+                <li class="nav-item"> <a class="nav-link" href="{{ route('create.user') }}">Add User</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{ route('view.users') }}">View Users</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="{{ url('admin/sliders') }}">
               <i class="mdi mdi-view-carousel menu-icon"></i>
               <span class="menu-title">Home Slider</span>
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.setting') }}">
+              <i class="mdi mdi-settings menu-icon"></i>
+              <span class="menu-title">Site Setting</span>
+            </a>
+          </li>
+          {{-- <li class="nav-item">
             <a class="nav-link" href="pages/charts/chartjs.html">
               <i class="mdi mdi-chart-pie menu-icon"></i>
               <span class="menu-title">Charts</span>
@@ -283,7 +302,7 @@
               <i class="mdi mdi-file-document-box-outline menu-icon"></i>
               <span class="menu-title">Documentation</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- partial -->
