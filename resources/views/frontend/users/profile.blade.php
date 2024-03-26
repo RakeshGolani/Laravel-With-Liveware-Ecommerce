@@ -8,7 +8,9 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
-                <h4>User Profile</h4>
+                <h4>User Profile
+                    <a href="{{ url('change-password') }}" class="btn btn-warning float-end">Change Password</a>
+                </h4>
                 <div class="underline mb-4"></div>
             </div>
             <div class="col-md-10">
@@ -30,6 +32,7 @@
                                     <div class="mb-3">
                                         <label>Username:</label>
                                         <input type="text" name="username" value="{{ Auth::user()->name }}" class="form-control" />
+                                        @error('username') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -42,18 +45,21 @@
                                     <div class="mb-3">
                                         <label>Phone Number:</label>
                                         <input type="text" name="phone" value="{{ Auth::user()->userDetail->phone ?? '' }}" class="form-control" />
+                                        @error('phone') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label>Zip/Pin Code:</label>
                                         <input type="text" name="pin_code" value="{{ Auth::user()->userDetail->pin_code ?? '' }}" class="form-control" />
+                                        @error('pin_code') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
                                         <label>Address:</label>
                                         <textarea name="address" class="form-control" rows="3">{{ Auth::user()->userDetail->address ?? '' }}</textarea>
+                                        @error('address') <span class="text-danger">{{ $message }}</span>@enderror
                                     </div>
                                 </div>
                                 <div class="col-md-12">
