@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-md-6 mb-3">
                                 <lable>Email</lable>
-                                <input type="text" name="email" value="{{ $user->email }}" class="form-control">
+                                <input type="text" name="email" readonly value="{{ $user->email }}" class="form-control">
                                 @error('email') <small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <div class="col-md-6 mb-3">

@@ -49,18 +49,24 @@ class UserController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
             'role_as' => ['required', 'integer'],
         ]);
 
         User::findOrFail($userId)->update([
             'name' => $request->name,
-            'email' => $request->email,
+            // 'email' => $request->email,
             'password' => Hash::make($request->password),
             'role_as' => $request->role_as,
         ]);
 
         return redirect()->route('view.users')->with('message','User updated Successfully');
+    }
+
+    public function destroy(int $userId)
+    {
+        User::findOrFail($userId)->delete();
+        return redirect()->route('view.users')->with('message','User Deleted Successfully');
     }
 }
