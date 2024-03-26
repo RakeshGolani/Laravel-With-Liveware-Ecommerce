@@ -30,6 +30,9 @@ Route::controller(App\Http\Controllers\Frontend\FrontendController::class)->grou
     
     Route::get('/new-arrivals', 'newArrival');
     Route::get('/featured-products', 'featuredProducts')->name('featured.products');
+
+    Route::get('/search','searchProducts')->name('search');
+    
 });
 
 Route::middleware(['auth'])->group(function (){
@@ -40,7 +43,6 @@ Route::middleware(['auth'])->group(function (){
 
     Route::get('/orders', [App\Http\Controllers\Frontend\OrderController::class,'index']);
     Route::get('/orders/{orderId}', [App\Http\Controllers\Frontend\OrderController::class,'show']);
-    
 });
 
 Route::get('/thank-you',[App\Http\Controllers\Frontend\FrontendController::class, 'thankyou']);
