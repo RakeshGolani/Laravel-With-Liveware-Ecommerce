@@ -24,7 +24,6 @@
                             Basic Information
                         </h4>
                         <hr>
-
                         
                         <div class="row">
                             <div class="col-md-6 mb-3">
@@ -71,7 +70,6 @@
                                                     Placeing Order
                                                 </span>
                                             </button>
-
                                         </div>
                                         <div class="tab-pane fade" id="onlinePayment" role="tabpanel" aria-labelledby="onlinePayment-tab" tabindex="0">
                                             <h6>Online Payment Mode</h6>
@@ -80,14 +78,10 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
-                        </div>
-                        
-
+                        </div>   
                     </div>
                 </div>
-
             </div>
             @else
                 <div class="card card-body shadow text-center p-md-5">

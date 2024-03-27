@@ -79,7 +79,14 @@
     </style>
 </head>
 <body>
-
+    <div class="text-center">
+        <h2>Thank you for your Order</h2>
+        <p>
+            Thank you for purchasing {{ $appSetting->website_name ?? "Riyaan of Web IT" }}.
+            <br>
+            Your order items and details are provided below
+        </p>
+    </div>
     <table class="order-details">
         <thead>
             <tr>

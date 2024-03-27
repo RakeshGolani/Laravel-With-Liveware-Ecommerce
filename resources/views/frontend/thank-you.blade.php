@@ -8,13 +8,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
-                    @if(session('message'))
-                    <div class="alert alert-success mb-2">{{ session('message') }},</div>
-                    @endif
+                    
+                    @include('include.alert')
                     
                     <div class="p-4 shadow bg-white">
                         <h2>You Logo</h2>
-                        <h4>Thank You for Shopping with Laravel Ecommerce</h4>
+                        <h4>Thank You for Shopping with Riyaan Ecommerce</h4>
                         <a href="{{ url('/collections') }}" class="btn btn-primary">Shop Now</a>
                     </div>
                 </div>
