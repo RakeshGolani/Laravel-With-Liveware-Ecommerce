@@ -84,13 +84,14 @@
         <thead>
             <tr>
                 <th width="50%" colspan="2">
-                    <h2 class="text-start">Funda Ecommerce</h2>
+                    <h2 class="text-start">Riyaan Ecommerce</h2>
                 </th>
                 <th width="50%" colspan="2" class="text-end company-data">
                     <span>Invoice Id: #{{ $order->id }}</span> <br>
                     <span>Date: {{ date('d / m / Y') }}</span> <br>
                     <span>Zip code : 560077</span> <br>
-                    <span>Address: #555, Main road, shivaji nagar, Bangalore, India</span> <br>
+                    <span>Excellent WebWorld, Science City Road, Science City, 
+                        <br>Sola, Ahmedabad, Gujarat, India Science City Road</span> <br>
                 </th>
             </tr>
             <tr class="bg-blue">
@@ -184,7 +185,7 @@
 
     <br>
     <p class="text-center">
-        Thank your for shopping with Funda of Web IT
+        Thank your for shopping with Riyaan of Web IT
     </p>
 
 </body>

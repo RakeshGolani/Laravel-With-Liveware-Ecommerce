@@ -8,6 +8,7 @@
         <div class="col-md-12">
 
             @include('include.alert')
+            
         </div>
         <div class="me-md-3 me-xl-5">
             <h2>Dashboard,</h2>

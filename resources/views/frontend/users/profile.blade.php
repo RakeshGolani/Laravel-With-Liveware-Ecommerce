@@ -15,9 +15,7 @@
             </div>
             <div class="col-md-10">
 
-                    @if(session('message'))
-                        <div class="alert alert-success mb-2">{{ session('message') }}</div>
-                    @endif
+                @include('include.alert')
 
                 <div class="card shadow">
                     <div class="card-header bg-primary">

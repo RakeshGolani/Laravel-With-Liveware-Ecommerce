@@ -9,9 +9,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6">
 
-                @if (session('message'))
-                    <h5 class="alert alert-success mb-2">{{ session('message') }}</h5>
-                @endif
+                @include('include.alert')
 
                 {{-- @if ($errors->any())
                 <ul class="alert alert-danger">
@@ -23,7 +21,9 @@
 
                 <div class="card shadow">
                     <div class="card-header bg-primary">
-                        <h4 class="mb-0 text-white">Change Password</h4>
+                        <h4 class="mb-0 text-white">Change Password
+                            <a href="{{ url('profile') }}" class="btn btn-danger btn-sm text-white float-end">Back</a>
+                        </h4>
                     </div>
                     <div class="card-body">
                         <form action="{{ url('change-password') }}" method="POST">

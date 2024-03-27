@@ -6,6 +6,10 @@
 <div class="alert alert-danger" id="autoCloseAlert">{{ session('error') }}</div>
 @endif
 
+@if (session('status'))
+    <div class="alert alert-success" id="autoCloseAlert">{{ session('status') }}</div>
+@endif
+
 <script>
     window.setTimeout(function() {
         $("#autoCloseAlert").fadeTo(500, 0).slideUp(500, function() {
